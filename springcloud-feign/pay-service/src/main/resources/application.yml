@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: pay-service
+eureka:
+  client:
+    service-url:
+     defaultZone: http://localhost:8761/eureka
+  instance:
+    instance-id:  ${spring.application.name}:${spring.cloud.client.ipAddress}:${spring.application.instance_id:${server.port}}
+#    租期更新时间间隔  默认30秒
+    lease-renewal-interval-in-seconds: 1
+#    租期到期时间  默认90秒
+    lease-expiration-duration-in-seconds: 3
+server:
+  port: 7070
+  # ipv6 不能用ip访问
+  address: 0.0.0.0
+feign:
+  compression:
+    request:
+      enabled: true
+      mime-types: text/xml,application/xml,application/json
+      min-request-size: 2048
+
+logging:
+  level:
+    com.zhihao.miao.pay.service.UserService: debug
+
+
+
+
+
